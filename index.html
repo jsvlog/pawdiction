@@ -94,6 +94,60 @@
         </p>
     </header>
 
+    <!-- PAWD CONTRACT ADDRESS SECTION -->
+    <div class="w-full bg-gradient-to-r from-brand-orange to-yellow-400 py-4 px-4 mb-6 relative overflow-hidden">
+        <!-- Animated Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16 animate-pulse"></div>
+            <div class="absolute bottom-0 right-0 w-24 h-24 bg-white rounded-full translate-x-12 translate-y-12 animate-pulse delay-300"></div>
+            <div class="absolute top-1/2 left-1/2 w-16 h-16 bg-white rounded-full -translate-x-8 -translate-y-8 animate-pulse delay-700"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-full shadow-lg">
+                    <img 
+                        src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Paw%20Prints.png" 
+                        alt="PAWD" 
+                        class="w-8 h-8"
+                    >
+                </div>
+                <div>
+                    <h3 class="text-white font-extrabold text-lg tracking-tight">PAWD Meme Coin</h3>
+                    <p class="text-white/90 text-sm font-semibold">The most pawsome token in the crypto world! 🐾</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl p-3 flex-1 sm:flex-none">
+                    <div class="text-white/80 text-xs font-bold uppercase tracking-wide mb-1">Contract Address</div>
+                    <div class="text-white font-mono text-sm sm:text-base break-all" id="contractAddress">
+                        0x742d35Cc6BF2e5fE7a0C3e8c4B5D6F8a2B1c3D4e
+                    </div>
+                </div>
+                
+                <button 
+                    onclick="copyContractAddress()" 
+                    class="bg-white text-brand-orange font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex items-center gap-2 group"
+                >
+                    <svg class="w-4 h-4 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    <span class="hidden sm:inline">Copy</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Bottom Wave -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-3 fill-brand-light">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"></path>
+            </svg>
+        </div>
+    </div>
+
     <!-- MAIN CONTENT -->
     <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex-grow">
         
@@ -398,6 +452,46 @@
                 Last Updated: ${now.toLocaleTimeString()}
             `;
             el.classList.remove('opacity-0');
+        }
+
+        // --- 6. PAWD CONTRACT FUNCTIONS ---
+        async function copyContractAddress() {
+            const contractAddress = document.getElementById('contractAddress').textContent.trim();
+            
+            try {
+                await navigator.clipboard.writeText(contractAddress);
+                
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalText = button.innerHTML;
+                button.innerHTML = `
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Copied!
+                `;
+                button.classList.add('bg-green-500', 'text-white');
+                button.classList.remove('bg-white', 'text-brand-orange');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-green-500', 'text-white');
+                    button.classList.add('bg-white', 'text-brand-orange');
+                }, 2000);
+                
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = contractAddress;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                alert('Contract address copied to clipboard!');
+            }
         }
     </script>
 </body>
